@@ -1,0 +1,26 @@
+option.CUSTOM_COLOR1_R = R
+option.CUSTOM_COLOR1_G = G
+option.CUSTOM_COLOR1_B = B
+
+option.CUSTOM_COLOR2_R = R
+option.CUSTOM_COLOR2_G = G
+option.CUSTOM_COLOR2_B = B
+
+option.CUSTOM_COLOR3_R = R
+option.CUSTOM_COLOR3_G = G
+option.CUSTOM_COLOR3_B = B
+
+option.CUSTOM_COLOR4_R = R
+option.CUSTOM_COLOR4_G = G
+option.CUSTOM_COLOR4_B = B
+
+screen.CUSTOM_COLOR1 = Darkest color
+screen.CUSTOM_COLOR2 = Dark color
+screen.CUSTOM_COLOR3 = Light color
+screen.CUSTOM_COLOR4 = Brightest color
+
+screen.CUSTOM_COLORS = Custom colors
+option.DITHER_SIZE =   Dither size
+option.USE_CUSTOM_COLORS = Use custom colors
+
+option.USE_GRAYSCALE = Grayscale
