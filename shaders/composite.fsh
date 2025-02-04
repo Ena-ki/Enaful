@@ -58,14 +58,18 @@ float findClosestFloat(int x, int y, float v)
     
 }
 
-
+// make it so that if a pixel is a certain amount of length away from center it gets bigger
 void main()
-{
-    vec2 uv1 = (gl_FragCoord.xy - vec2(int(gl_FragCoord.x) % int(DITHER_SIZE), int(gl_FragCoord.y) % int(DITHER_SIZE)))/ivec2(viewWidth,viewHeight); //sets uv1 to 0-1
+{   float uv2 = length(gl_FragCoord.xy/ivec2(viewWidth,viewHeight) - vec2(0.5));
+    float dither = DITHER_SIZE;
+    #ifdef BOTTLE
+    dither *= uv2 * 92.0;
+    #endif
+    vec2 uv1 = (gl_FragCoord.xy - vec2(int(gl_FragCoord.x) % int(dither), int(gl_FragCoord.y) % int(dither)))/ivec2(viewWidth,viewHeight); //sets uv1 to 0-1
     vec4 col = texture(colortex0, uv1); // gives us the texture
 
-   	int x = int(gl_FragCoord.x / DITHER_SIZE) % 4; // gives us the 1 - 4 pixel coords
-    int y = int(gl_FragCoord.y / DITHER_SIZE) % 4;
+   	int x = int(gl_FragCoord.x / dither) % 4; // gives us the 1 - 4 pixel coords
+    int y = int(gl_FragCoord.y / dither) % 4;
     
 	float lum = dot(vec3(0.2126, 0.7152, 0.0722), col.rgb); // average color of a pixel
     
@@ -79,7 +83,7 @@ void main()
         gl_FragColor = vec4(findClosestVec(x ,y, lum),1.0);
     #else
         #ifdef USE_GRAYSCALE 
-            gl_FragColor = vec4(vec3(lum),1.0);
+            gl_FragColor = vec4(vec3(findClosestFloat(x,y,lum)),1.0);
         #else
 	        gl_FragColor = vec4(findClosestFloat(x,y,col.r),findClosestFloat(x,y,col.g),findClosestFloat(x,y,col.b),1.0);
         #endif

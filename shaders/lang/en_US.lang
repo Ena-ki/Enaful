@@ -24,3 +24,5 @@ option.DITHER_SIZE =   Dither size
 option.USE_CUSTOM_COLORS = Use custom colors
 
 option.USE_GRAYSCALE = Grayscale
+
+option.BOTTLE = ???
